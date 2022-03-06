@@ -3,7 +3,7 @@ const router = express.Router();
 const Todo = require("../models/todos");
 const authenticateJWT = require('../middleware/auth')
 
-router.post("/", async (req, res) => {
+router.post("/",authenticateJWT, async (req, res) => {
   try {
     const todo = await new Todo({
       title: req.body.title,
@@ -26,13 +26,6 @@ router.get('/',authenticateJWT, async(req,res)=>{
     }
 });
 
-router.get('/:id', async(req,res)=>{
-    try {
-        const todo = await Todo.findById(req.params.id)
-        res.status(200).json(todo)
-    } catch (error) {
-        res.status(404).send(error)
-    }
-})
+
 
 module.exports = router;

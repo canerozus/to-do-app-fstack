@@ -4,6 +4,7 @@ const User = require("../models/user");
 
 ;
 const tokenSecret = process.env.TOKEN_SECRET;
+const refreshTokenSecret = process.env.REFRESH_SECRET;
 
 function authenticateJWT(req, res, next) {
 
